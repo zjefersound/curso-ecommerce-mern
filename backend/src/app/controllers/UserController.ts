@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import User from '../models/UserModel';
+import errorHandler from '../../helpers/dbErrorhandler';
 
 class UserController {
   index = async (req: Request, res: Response) => {
@@ -12,7 +13,7 @@ class UserController {
     user.save((error, user) => {
       if (error) {
         return res.status(400).json({
-          error
+          error: errorHandler(error)
         })
       }
 

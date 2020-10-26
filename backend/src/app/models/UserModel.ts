@@ -1,5 +1,4 @@
 import { Document, Schema, Model, model } from "mongoose";
-import bcrypt from "bcrypt";
 import { uuid } from "uuidv4";
 import encryptPassword from "../../utils/encryptPassword";
 
