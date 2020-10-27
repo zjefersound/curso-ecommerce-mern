@@ -1,7 +1,7 @@
-import { celebrate, Joi } from "celebrate";
+import { celebrate, Joi, Segments } from "celebrate";
 
 export default celebrate({
-  body: Joi.object().keys({
+  [Segments.BODY]: Joi.object().keys({
     name: Joi.string().required(),
     email: Joi.string().required().email(),
     password: Joi.string().required().min(6),
