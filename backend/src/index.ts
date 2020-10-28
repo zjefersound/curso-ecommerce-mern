@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-import routes from './routes';
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 
@@ -24,7 +23,6 @@ app.use(morgan('dev'))
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api', routes);
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 

@@ -3,20 +3,9 @@ import errorHandler from "../../helpers/dbErrorhandler";
 import User from "../models/UserModel";
 
 class UserController {
-  index = async (req: Request, res: Response) => {};
+  index = async (req: Request, res: Response) => {}
 
-  show = async (req: Request, res: Response, next: NextFunction) => {
-    const { userId: id } = req.params;
-    User.findById(id).exec((err, user) => {
-      if (err || !user ) {
-        return res.status(400).json({
-          error: "User not found"
-        })
-      }
-      res.status(200).json({user});
-      next();
-    });
-  };
+  show = async (req: Request, res: Response) => {}
 
   create = async (req: Request, res: Response) => {
     const user = new User(req.body);
@@ -31,11 +20,24 @@ class UserController {
         user,
       });
     });
-  };
+  }
 
-  update = async (req: Request, res: Response) => {};
+  update = async (req: Request, res: Response) => {}
 
-  delete = async (req: Request, res: Response) => {};
+  delete = async (req: Request, res: Response) => {}
+
+  userById = async (req: Request, res: Response, next: NextFunction) => {
+    const { userId: id } = req.params;
+    User.findById(id).exec((err, user) => {
+      if (err || !user ) {
+        return res.status(404).json({
+          error: "User not found"
+        })
+      }
+      req.profile = user;
+      next();
+    });
+  }
 }
 
 export default new UserController();

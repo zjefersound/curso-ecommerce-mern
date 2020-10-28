@@ -8,6 +8,9 @@ const router = Router();
 router.param('userId', UserController.show);
 
 router.post("/signup", signUpValidator, UserController.create);
-router.get("/users/:userId", authMiddleware, UserController.show);
+router.get("/secret/:userId", authMiddleware, UserController.userById, (req, res) => {
+  res.json({profile: req.profile})
+} );
+
 
 export default router;
