@@ -63,10 +63,8 @@ UserSchema.methods = {
 
 UserSchema.virtual("password")
   .set(function (this: any, password: string) {
-    // this._password = password;
     this.salt = uuid();
     this.hashed_password = bcrypt.hashSync(password, 8)
-    
   })
   .get(function (this: any) {
     return this._password;

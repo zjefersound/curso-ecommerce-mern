@@ -1,10 +1,11 @@
 import { Router } from "express";
-import UserController from '../app/controllers/UserController';
-import signupValidator from '../validators/signUpValidator';
+import authMiddleware from "../app/middlewares/AuthMiddleware";
 
-const routes = Router();
+const router = Router();
 
-routes.post("/signup", signupValidator, UserController.create);
-routes.post("/signin", UserController.signin);
+router.get("/hello", authMiddleware, (req, res) => {
+  res.send('Olá')
+});
 
-export default routes;
+
+export default router;

@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import routes from './routes';
+import authRoutes from "./routes/authRoutes";
+import userRoutes from "./routes/userRoutes";
 
 dotenv.config();
 const app = express();
@@ -23,5 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api', routes);
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
 
 app.listen(port, () => console.log(`Backend is running at ${port}`));
