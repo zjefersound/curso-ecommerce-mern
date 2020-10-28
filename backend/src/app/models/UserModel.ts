@@ -1,6 +1,6 @@
 import { Document, Schema, Model, model } from "mongoose";
 import { uuid } from "uuidv4";
-import encryptPassword from "../../utils/encryptPassword";
+import bcrypt from 'bcrypt';
 
 export interface UserDocument extends Document {
   name: string;
@@ -63,13 +63,9 @@ UserSchema.methods = {
 
 UserSchema.virtual("password")
   .set(function (this: any, password: string) {
-    this._password = password;
+    // this._password = password;
     this.salt = uuid();
-    let hashed_password = '';
-    encryptPassword(password, (hash) => {
-      hashed_password = hash;
-    })
-    this.hashed_password = password
+    this.hashed_password = bcrypt.hashSync(password, 8)
     
   })
   .get(function (this: any) {
