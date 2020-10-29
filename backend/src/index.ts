@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
+import productRoutes from "./routes/productRoutes";
 
 dotenv.config();
 const app = express();
@@ -28,5 +29,6 @@ app.use(cookieParser());
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api/category', categoryRoutes);
+app.use('/api/product', productRoutes);
 
 app.listen(port, () => console.log(`Backend is running at ${port}`));
