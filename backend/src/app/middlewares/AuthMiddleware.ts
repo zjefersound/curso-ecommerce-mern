@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
 interface TokenPayload {
-  id: string;
+  _id: string;
   iat: number;
   exp: number;
 }
@@ -22,8 +22,9 @@ export default function authMiddleware(
 
   try {
     const data = jwt.verify(token, process.env.JWT_SECRET || "");
-    const { id } = data as TokenPayload;
-    req.userId = id;
+    const { _id } = data as TokenPayload;
+    
+    req.userId = _id;
     return next();
   } catch {
     return res.sendStatus(401);
@@ -31,5 +32,21 @@ export default function authMiddleware(
 }
 
 export function isAuth(req: Request, res: Response, next: NextFunction) {
-  // let user = req.profile && req.auth;
+  let user = req.profile && req.userId && String(req.profile._id) === String(req.userId);
+  
+  if (!user) {
+    return res.status(402).json({ 
+      error: "Access denied" 
+    });
+  }
+  next();
+}
+
+export function isAdmin(req: Request, res: Response, next: NextFunction) {
+  if (req.profile.role === 0) {
+    return res.status(403).json({ 
+      error: "Admin resource! Access denied." 
+    });
+  }
+  next();
 }

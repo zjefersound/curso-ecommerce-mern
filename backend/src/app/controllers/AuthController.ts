@@ -41,6 +41,7 @@ class UserController {
   signout = async (req: Request, res: Response) => {
     res.clearCookie('t').json({ message: 'Signed out successfully' });
   };
+  
 }
 
 export default new UserController();

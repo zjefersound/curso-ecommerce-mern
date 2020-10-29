@@ -26,17 +26,18 @@ class UserController {
 
   delete = async (req: Request, res: Response) => {}
 
-  userById = async (req: Request, res: Response, next: NextFunction) => {
-    const { userId: id } = req.params;
+  userById = async (req: Request, res: Response, next: NextFunction, id: string) => {
     User.findById(id).exec((err, user) => {
       if (err || !user ) {
         return res.status(404).json({
           error: "User not found"
         })
       }
+      
       req.profile = user;
       next();
     });
+    
   }
 }
 
