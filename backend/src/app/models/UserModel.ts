@@ -9,7 +9,7 @@ export interface UserDocument extends Document {
   about: string;
   salt: string;
   role: number;
-  hisytory: Array<string>;
+  history: Array<string>;
 }
 
 export interface UserModel extends Model<UserDocument> {}
@@ -41,7 +41,7 @@ const UserSchema: Schema = new Schema(
       type: Number,
       default: 0,
     },
-    hisytory: {
+    history: {
       type: Array,
       default: [],
     },

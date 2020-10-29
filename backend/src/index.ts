@@ -3,8 +3,10 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
+
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
+import categoryRoutes from "./routes/categoryRoutes";
 
 dotenv.config();
 const app = express();
@@ -25,5 +27,6 @@ app.use(cookieParser());
 
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api/category', categoryRoutes);
 
 app.listen(port, () => console.log(`Backend is running at ${port}`));

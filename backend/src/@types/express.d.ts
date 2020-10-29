@@ -8,9 +8,8 @@ declare namespace Express {
       about: string;
       salt: string;
       role: number;
-      hisytory: Array<string>;
+      history: Array<string>;
     };
-    auth: string;
     userId: string;
   }
 }
