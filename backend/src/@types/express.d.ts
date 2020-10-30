@@ -22,6 +22,11 @@ declare namespace Express {
       quantity: number;
       photo: Buffer | any;
       shipping: boolean;
-    }
+    };
+
+    category: {
+      _id: string;
+      name: string;
+    };
   }
 }
