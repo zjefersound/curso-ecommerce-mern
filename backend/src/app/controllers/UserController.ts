@@ -5,7 +5,9 @@ import User from "../models/UserModel";
 class UserController {
   index = async (req: Request, res: Response) => {};
 
-  show = async (req: Request, res: Response) => {};
+  show = async (req: Request, res: Response) => {
+    res.json(req.profile);
+  };
 
   create = async (req: Request, res: Response) => {
     const user = new User(req.body);

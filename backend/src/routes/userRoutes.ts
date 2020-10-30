@@ -6,9 +6,7 @@ import signUpValidator from "../validators/signUpValidator";
 const router = Router();
 
 router.post("/signup", signUpValidator, UserController.create);
-router.get("/secret/:userId", authMiddleware, isAuth, isAdmin, (req, res) => {
-  res.json({ profile: req.profile });
-});
+router.get("/secret/:userId", authMiddleware, isAuth, isAdmin, UserController.show);
 
 router.param("userId", UserController.userById);
 

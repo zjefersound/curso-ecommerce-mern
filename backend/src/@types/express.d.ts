@@ -1,5 +1,7 @@
 declare namespace Express {
   export interface Request {
+    userId: string;
+
     profile: {
       _id: string;
       name: string;
@@ -10,6 +12,16 @@ declare namespace Express {
       role: number;
       history: Array<string>;
     };
-    userId: string;
+
+    product: {
+      _id: string;
+      name: string;
+      description: string;
+      price: number;
+      category: string;
+      quantity: number;
+      photo: Buffer | any;
+      shipping: boolean;
+    }
   }
 }
