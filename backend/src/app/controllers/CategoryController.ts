@@ -8,7 +8,7 @@ class CategoryController {
     Category.find().exec((err, data) => {
       if (err) {
         return res.status(400).json({
-          error: errorHandler(err as any),
+          error: 'Categories not found',
         });
       }
       res.json(data);

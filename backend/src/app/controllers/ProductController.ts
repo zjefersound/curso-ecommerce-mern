@@ -1,10 +1,28 @@
 import { NextFunction, Request, Response } from "express";
 import errorHandler from "../../helpers/dbErrorhandler";
 import Product from "../models/ProductModel";
-import _ from 'lodash';
+import _ from "lodash";
 
 class ProductController {
-  index = async (req: Request, res: Response) => {};
+  index = async (req: Request, res: Response) => {
+    let order = req.body.order ? req.body.order : "asc";
+    let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+    let limit = req.body.limit ? Number(req.body.limit) : 6;
+
+    Product.find()
+      .select("-photo")
+      .populate("category")
+      .sort([[sortBy, order]])
+      .limit(limit)
+      .exec((err, data) => {
+        if (err) {
+          return res.status(400).json({
+            error: "Products not found",
+          });
+        }
+        res.json(data);
+      });
+  };
 
   show = async (req: Request, res: Response) => {
     req.product.photo = undefined;
@@ -75,7 +93,8 @@ class ProductController {
     product = _.extend(product, req.body);
 
     if (file) {
-      if (file.size > 2000000) { // 2mb = 2000000
+      if (file.size > 2000000) {
+        // 2mb = 2000000
         return res.status(400).json({
           error: "Image should be less than 2mb in size",
         });
@@ -83,7 +102,7 @@ class ProductController {
     }
     product.photo.data = file.buffer;
     product.photo.contentType = file.mimetype;
-    
+
     product.save((error, data) => {
       if (error) {
         return res.status(400).json({
@@ -106,6 +125,38 @@ class ProductController {
       res.json({
         message: "Product deleted successfully",
       });
+    });
+  };
+
+  /**
+   * let order = req.body.order ? req.body.order : "asc";
+   * let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+   * let limit = req.body.limit ? Number(req.body.limit) : 6;
+   */
+  listRelated = async (req: Request, res: Response) => {
+    let limit = req.body.limit ? Number(req.body.limit) : 6;
+
+    Product.find({ _id: { $ne: req.product }, category: req.product.category })
+      .limit(limit)
+      .populate("category", "_id name")
+      .exec((err, products) => {
+        if (err) {
+          return res.status(400).json({
+            error: "Products not found",
+          });
+        }
+        res.json(products);
+      });
+  };
+
+  listCategories = async (req: Request, res: Response) => {
+    Product.distinct("category", {}, (err, categories) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Categories not found",
+        });
+      }
+      res.json(categories);
     });
   };
 
