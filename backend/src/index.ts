@@ -29,6 +29,6 @@ app.use(cookieParser());
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api/category', categoryRoutes);
-app.use('/api/product', productRoutes);
+app.use('/api', productRoutes);
 
 app.listen(port, () => console.log(`Backend is running at ${port}`));
