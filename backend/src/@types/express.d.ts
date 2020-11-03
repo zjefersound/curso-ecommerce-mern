@@ -6,9 +6,9 @@ declare namespace Express {
       _id: string;
       name: string;
       email: string;
-      hashed_password: string;
+      hashed_password?: string;
       about: string;
-      salt: string;
+      salt?: string;
       role: number;
       history: Array<string>;
     };

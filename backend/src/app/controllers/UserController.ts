@@ -3,10 +3,17 @@ import errorHandler from "../../helpers/dbErrorhandler";
 import User from "../models/UserModel";
 
 class UserController {
-  index = async (req: Request, res: Response) => {};
+  index = async (req: Request, res: Response) => { };
+
+  secret = async (req: Request, res: Response) => {
+    return res.json(req.profile);
+  };
 
   show = async (req: Request, res: Response) => {
-    res.json(req.profile);
+    req.profile.hashed_password = undefined;
+    req.profile.salt = undefined;
+
+    return res.json(req.profile);
   };
 
   create = async (req: Request, res: Response) => {
@@ -18,15 +25,28 @@ class UserController {
         });
       }
 
-      res.status(200).json({
+      return res.status(200).json({
         user,
       });
     });
   };
 
-  update = async (req: Request, res: Response) => {};
+  update = async (req: Request, res: Response) => {
+    User.findByIdAndUpdate(req.profile._id, { $set: req.body }, { new: true }, (err, user) => { 
+      if (err) {
+        return res.status(400).json({error: "You're not authorized to perform this action"});
+      }
+      const responseUser = {
+        ...user,
+        hashed_password: undefined,
+        salt: undefined
+      }
 
-  delete = async (req: Request, res: Response) => {};
+      return res.json(responseUser);
+    });
+  };
+
+  delete = async (req: Request, res: Response) => { };
 
   userById = async (
     req: Request,

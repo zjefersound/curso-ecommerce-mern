@@ -8,6 +8,7 @@ import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
 import productRoutes from "./routes/productRoutes";
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
@@ -22,7 +23,8 @@ mongoose.connection.on("error", (err) => {
   console.log(`DB connection error: ${err.message}`);
 });
 
-app.use(morgan('dev'))
+app.use(cors());
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
 

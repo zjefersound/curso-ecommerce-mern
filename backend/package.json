@@ -11,6 +11,7 @@
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
     "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.8",
     "@types/express": "^4.17.8",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/lodash": "^4.14.164",
@@ -29,6 +30,7 @@
     "bcrypt": "^5.0.0",
     "celebrate": "^13.0.3",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
