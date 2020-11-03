@@ -11,12 +11,12 @@ class CategoryController {
           error: 'Categories not found',
         });
       }
-      res.json(data);
+      return res.json(data);
     });
   };
 
   show = async (req: Request, res: Response) => {
-    res.json(req.category);
+    return res.json(req.category);
   };
 
   create = async (req: Request, res: Response) => {
@@ -28,7 +28,7 @@ class CategoryController {
         });
       }
 
-      res.status(200).json({
+      return res.status(200).json({
         category: data,
       });
     });
@@ -45,7 +45,7 @@ class CategoryController {
         });
       }
 
-      res.status(200).json({
+      return res.status(200).json({
         category: data,
       });
     });
@@ -60,7 +60,7 @@ class CategoryController {
         });
       }
 
-      res.json({
+      return res.json({
         message: "Category deleted successfully",
       });
     });

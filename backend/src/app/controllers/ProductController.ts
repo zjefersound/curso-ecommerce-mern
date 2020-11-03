@@ -68,7 +68,7 @@ class ProductController {
         });
       }
 
-      res.status(200).json(data);
+      return res.status(200).json(data);
     });
   };
 
@@ -110,7 +110,7 @@ class ProductController {
         });
       }
 
-      res.status(200).json(data);
+      return res.status(200).json(data);
     });
   };
 
@@ -122,7 +122,7 @@ class ProductController {
           error: errorHandler(err),
         });
       }
-      res.json({
+      return res.json({
         message: "Product deleted successfully",
       });
     });
@@ -145,7 +145,7 @@ class ProductController {
             error: "Products not found",
           });
         }
-        res.json(products);
+        return res.json(products);
       });
   };
 
@@ -156,11 +156,11 @@ class ProductController {
           error: "Categories not found",
         });
       }
-      res.json(categories);
+      return res.json(categories);
     });
   };
 
-  listBySearch =async (req: Request, res: Response) => {
+  listBySearch = async (req: Request, res: Response) => {
     let order = req.body.order ? req.body.order : "desc";
     let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
     let limit = req.body.limit ? parseInt(req.body.limit) : 100;
@@ -197,12 +197,20 @@ class ProductController {
             error: "Products not found",
           });
         }
-        res.json({
+        return res.json({
           size: data.length,
           data,
         });
       });
   };
+
+  photo = async (req: Request, res: Response, next: NextFunction) => {
+    if (req.product.photo.data) {
+      res.set('Content-Type', req.product.photo.contentType);
+      return res.send(req.product.photo.data);
+    }
+    next();
+  }
 
   productById = async (
     req: Request,

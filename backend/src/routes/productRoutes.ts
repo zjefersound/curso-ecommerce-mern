@@ -8,11 +8,13 @@ import authMiddleware, { isAdmin, isAuth } from "../app/middlewares/AuthMiddlewa
 const router = Router();
 const upload = multer();
 
-router.get("/product/", ProductController.index);
-router.get("/product/:productById", ProductController.show);
-router.get("/product/related/:productById", ProductController.listRelated);
+router.get("/products", ProductController.index);
+router.get("/products/related/:productById", ProductController.listRelated);
 router.get("/products/categories", ProductController.listCategories);
 router.post("/products/by/search", ProductController.listBySearch);
+
+router.get("/product/photo/:productById", ProductController.photo);
+router.get("/product/:productById", ProductController.show);
 
 router.post("/product/:userId", upload.single('photo'), authMiddleware, isAuth, isAdmin, ProductController.create);
 router.put("/product/:productById/:userId", upload.single('photo'), authMiddleware, isAuth, isAdmin, ProductController.update);

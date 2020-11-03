@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import User from "../models/UserModel";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcrypt";4
+import dotenv from 'dotenv';
+dotenv.config();
 
 class UserController {
   signin = async (req: Request, res: Response) => {
