@@ -43,7 +43,7 @@ const Signup: React.FC = () => {
 
         ) : (
             <>
-              <h2>Cadastre-se na nossa loja!</h2>
+              <h2>Cadastre-se <br />na nossa loja!</h2>
 
               {error && (
                 <ErrorPanel>

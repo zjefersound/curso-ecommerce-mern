@@ -5,8 +5,13 @@ export interface AuthProviderProps {
   authenticated?: boolean;
   loginErrorMessage?: string;
   loading: boolean;
-  handleLogin: Function;
-  handleLogout: Function;
+  handleLogin: (data: LoginProps) => void;
+  handleLogout: () => void;
+}
+
+interface LoginProps {
+  email: string;
+  password: string;
 }
 
 const useAuth = () => {
@@ -23,16 +28,15 @@ const useAuth = () => {
     }
 
     setLoading(false);
+
   }, []);
 
-  const handleLogin = async (username: string, password: string) => {
+  const handleLogin = async (data: LoginProps) => {
+    setLoginErrorMessage('');
     setLoading(true);
-    const data = {
-      username,
-      password
-    }
+
     try {
-      await api.post(`/singin`,data)
+      await api.post(`/signin`, data)
         .then(response => {
           if (!response.data.error) {
             const { token, user } = response.data;
@@ -41,21 +45,22 @@ const useAuth = () => {
             localStorage.setItem('token', JSON.stringify(token));
             localStorage.setItem('user', JSON.stringify(user));
             api.defaults.headers.Authorization = `Bearer ${token}`;
-            
+
           } else {
             setLoginErrorMessage(response.data.error);
           }
+        }).finally(() => {
           setLoading(false);
         });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      alert(error);
     }
   };
 
   const handleLogout = async () => {
     //set axios headers to undefined
     try {
-      api.defaults.headers = undefined;
+      api.defaults.headers.Authorization = undefined;
       localStorage.clear();
       setAuthenticated(false);
     } catch (error) {

@@ -14,12 +14,13 @@ export const Container = styled.div`
   > div {
     width: 50%;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
     
     > img {
-      width: 100%;
-      height: auto;
       max-width: 64rem;
-      max-height: 64rem;
+      max-height: 40rem;
+      align-self: center;
     }
 
     h2 {

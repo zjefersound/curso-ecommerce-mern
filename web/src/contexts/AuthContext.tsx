@@ -1,4 +1,5 @@
 import React, { createContext } from "react";
+import LoadingScreen from "../components/LoadingScreen";
 import useAuth, { AuthProviderProps } from "../hooks/useAuth";
 
 const AuthContext = createContext<AuthProviderProps>({
@@ -21,7 +22,7 @@ const AuthProvider: React.FC = ({ children }) => {
       loginErrorMessage
     }}>
       {loading
-        ? <div>loading...</div>
+        ? <LoadingScreen />
         : children}
     </AuthContext.Provider>
   );

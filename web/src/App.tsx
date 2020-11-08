@@ -9,12 +9,12 @@ dotenv.config();
 
 function App() {
   return (
-    <AuthProvider>
-      <CustomThemeProvider>
+    <CustomThemeProvider>
+      <AuthProvider>
         <Routes />
-        <GlobalStyles />
-      </CustomThemeProvider>
-    </AuthProvider>
+      </AuthProvider>
+      <GlobalStyles />
+    </CustomThemeProvider>
   );
 }
 

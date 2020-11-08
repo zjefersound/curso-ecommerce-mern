@@ -12,16 +12,16 @@ class UserController {
     User.findOne({ email }, (err, user) => {
       (async () => {
         if (err || !user) {
-          return res.status(400).json({
+          return res.json({
             error: "An user with that password does not exists.",
-          });
+          }).sendStatus(400);
         }
         const isValidPassword = await bcrypt.compare(password, user.hashed_password);
   
         if (!isValidPassword) {
-          return res.sendStatus(401).json({
+          return res.json({
             error: "Email and password don't match",
-          });
+          }).sendStatus(401);
         }
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET || '');
   

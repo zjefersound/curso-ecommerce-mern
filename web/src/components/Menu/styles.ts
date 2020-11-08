@@ -36,3 +36,8 @@ export const Container = styled.nav`
     }
   }
 `;
+
+export const LogoutButton = styled.button`
+  cursor: pointer;
+  color: var(--color-danger);
+`;

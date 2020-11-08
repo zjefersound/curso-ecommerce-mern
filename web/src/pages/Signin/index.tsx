@@ -1,16 +1,20 @@
-import React, { FormEvent, useCallback, useState } from 'react';
+import React, { FormEvent, useCallback, useContext, useState } from 'react';
 import Button from '../../components/Button';
 import TextInput from '../../components/Forms/TextInput';
 
 import { Container, ErrorPanel, SuccessPanel, ErrorIcon } from './styles';
 import loginImg from '../../assets/login.png';
-import api from '../../services/api';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Signin: React.FC = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const { handleLogin, loginErrorMessage } = useContext(AuthContext);
 
   const handleInputChange = useCallback((event: FormEvent<HTMLInputElement>) => {
     const { name, value } = event.currentTarget;
@@ -21,12 +25,7 @@ const Signin: React.FC = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    api.post('/signin', formData).then(res => {
-      console.log(res);
-      
-    }).catch((res) => {
-      setError('Erro no servidor');
-    });
+    handleLogin(formData);
   }
 
   return (
@@ -46,10 +45,10 @@ const Signin: React.FC = () => {
             <>
               <h2>Faça seu Log in</h2>
 
-              {error && (
+              {loginErrorMessage && (
                 <ErrorPanel>
                   <ErrorIcon />
-                  {error}
+                  {loginErrorMessage}
                 </ErrorPanel>
               )}
               <form onSubmit={handleSubmit}>
@@ -74,7 +73,7 @@ const Signin: React.FC = () => {
                 </Button>
               </form>
             </>
-        )}
+          )}
 
       </div>
       <div>

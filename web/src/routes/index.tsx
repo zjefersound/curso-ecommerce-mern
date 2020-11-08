@@ -9,6 +9,7 @@ import Signup from '../pages/Signup';
 import Signin from '../pages/Signin';
 import Home from '../pages/Home';
 import Menu from '../components/Menu';
+import Dashboard from '../pages/Dashboard';
 
 
 const Routes = () => {
@@ -18,7 +19,8 @@ const Routes = () => {
       <Switch>
         <Route path='/signup' exact component={Signup}/>
         <Route path='/signin' exact component={Signin}/>
-        <Route path='/' exact component={Home}/>
+        <Route path='/' awaysPublic exact component={Home}/>
+        <Route path='/dashboard' isPrivate exact component={Dashboard}/>
       </Switch>
     </Router>
   );

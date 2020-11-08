@@ -4,7 +4,7 @@ import { Container } from './styles';
 
 const Home: React.FC = () => {
   return (
-    <Layout title='Home' description='home'>
+    <Layout title='Home' description='Ecommerce application'>
 
     </Layout>
   );
