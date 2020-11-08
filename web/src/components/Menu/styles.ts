@@ -14,6 +14,8 @@ export const Container = styled.nav`
   background: var(--color-neutral-200);
   padding: 2.4rem;
   
+  z-index: 10;
+
   ul {
     display: flex;
     align-items: center;

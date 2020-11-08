@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect, RouteProps} from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
 interface RouteWrapperProps extends RouteProps {
   isPrivate?: boolean;
 }
@@ -10,9 +11,8 @@ const RouteWrapper: React.FC<RouteWrapperProps> = ({
   ...rest
 }) => {
 
-  // const { authenticated } = useContext(AuthContext);
+  const { authenticated } = useContext(AuthContext);
 
-  const authenticated = false;
   if (isPrivate && !authenticated) {
     return <Redirect to='/' />;
   }

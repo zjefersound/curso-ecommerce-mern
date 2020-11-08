@@ -1,14 +1,9 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { Container } from './styles';
 
 const Menu: React.FC = () => {
-  const { url, path: currentPath, isExact } = useRouteMatch();
-  const isActive = (path: string) => {
-    const active = currentPath === path ? 'active' : '';
-    return active as string;
-  };
 
   const paths = [
     { path: '/', label: 'Home' },
@@ -19,8 +14,8 @@ const Menu: React.FC = () => {
   return (
     <Container>
       <ul>
-        {paths.map(({ path, label }) => (
-          <li className={isActive(path)}>
+        {paths.map(({ path, label }, index) => (
+          <li className={``} key={index}>
             <Link to={path}>
               {label}
             </Link>

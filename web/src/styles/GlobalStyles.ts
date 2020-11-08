@@ -69,8 +69,8 @@ export default createGlobalStyle`
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
     -webkit-text-fill-color: var(--color-neutral-500);
-    box-shadow: 0 0 0px 1000px var(--color-neutral-100) inset;
-    -webkit-box-shadow: 0 0 0px 1000px var(--color-neutral-100) inset;
+    box-shadow: 0 0 0px 1000px var(--color-neutral-200) inset;
+    -webkit-box-shadow: 0 0 0px 1000px var(--color-neutral-200) inset;
     transition: background-color 5000s ease-in-out 0s;
   }
   html {

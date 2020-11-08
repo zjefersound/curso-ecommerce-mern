@@ -8,11 +8,13 @@ import Route from './Route';
 import Signup from '../pages/Signup';
 import Signin from '../pages/Signin';
 import Home from '../pages/Home';
+import Menu from '../components/Menu';
 
 
 const Routes = () => {
   return (
     <Router>
+      <Menu />
       <Switch>
         <Route path='/signup' exact component={Signup}/>
         <Route path='/signin' exact component={Signin}/>

@@ -46,11 +46,11 @@ export const themes = {
 
   dark: {
     //colors
-    'color-primary': '#E1368A',
-    'color-primary-disabled': '#E8A7C7',
-    'color-primary-hover': '#F15BA4',
-    'color-primary-light': '#EE90BE',
-    'color-primary-dark': '#C20A64',
+    'color-primary': '#C83737',
+    'color-primary-disabled': '#B86767',
+    'color-primary-hover': '#CF5757',
+    'color-primary-light': '#E86767',
+    'color-primary-dark': '#A80707',
 
     'color-secondary': '#27AFAF',
     'color-secondary-disabled': '#A4F3EA',
