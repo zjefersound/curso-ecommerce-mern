@@ -1,10 +1,14 @@
 import React from 'react';
+import Routes from './routes';
+import GlobalStyles from './styles/GlobalStyles';
+import { CustomThemeProvider } from './contexts/ThemeContext';
 
 function App() {
   return (
-    <div>
-      <h1>Ecommerce web</h1>
-    </div>
+    <CustomThemeProvider>
+      <Routes />
+      <GlobalStyles />
+    </CustomThemeProvider>
   );
 }
 
