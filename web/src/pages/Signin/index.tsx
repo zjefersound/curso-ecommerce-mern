@@ -31,6 +31,9 @@ const Signin: React.FC = () => {
   return (
     <Container>
       <div>
+        <img src={loginImg} alt="hero" />
+      </div>
+      <div>
         {success ? (
           <SuccessPanel>
             <h2>Sucesso!</h2>
@@ -75,9 +78,6 @@ const Signin: React.FC = () => {
             </>
           )}
 
-      </div>
-      <div>
-        <img src={loginImg} alt="hero" />
       </div>
       <div className='bg' />
     </Container>

@@ -16,6 +16,8 @@ export const Container = styled.nav`
   
   z-index: 10;
 
+  box-shadow: 0 0 1.6rem var(--color-shadow);
+
   ul {
     display: flex;
     align-items: center;

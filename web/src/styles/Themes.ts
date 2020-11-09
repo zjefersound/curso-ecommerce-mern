@@ -65,7 +65,7 @@ export const themes = {
     'color-neutral-400': '#545052',
     'color-neutral-500': '#606264',
     'color-neutral-600': '#98999E',
-    'color-neutral-700': '#A0979A',
+    'color-neutral-700': '#A09F9F',
     'color-neutral-800': '#B2B1B0',
     'color-neutral-900': '#C6C5C4',
     'color-neutral-1000': '#DCDCDC',

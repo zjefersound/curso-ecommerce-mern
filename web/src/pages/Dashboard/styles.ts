@@ -69,7 +69,7 @@ export const UserLinkCard = styled.div`
       border-radius: var(--border-lg);
       
       transition: 0.3s;
-      
+
       &:hover {
         background: var(--color-neutral-300);
       }

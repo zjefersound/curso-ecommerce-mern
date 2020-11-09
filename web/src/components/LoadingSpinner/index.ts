@@ -9,7 +9,7 @@ const spin = keyframes`
   }
 `;
 
-const Loading = styled.div`
+const LoadingSpinner = styled.div`
   width: 6rem;
   height: 6rem;
   border: 0.3rem solid  var(--color-primary-light);
@@ -17,6 +17,8 @@ const Loading = styled.div`
   border-top: 3px solid  var(--color-primary);
   animation: ${spin} 1.5s linear infinite;
   -webkit-animation: ${spin} 1.5s linear infinite;
+  justify-self: center;
+  align-self: center;
 `;
 
-export default Loading;
+export default LoadingSpinner;

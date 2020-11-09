@@ -39,6 +39,10 @@ export default createGlobalStyle`
     -webkit-appearance: none;
   }
 
+  button {
+    cursor: pointer;
+  }
+
   /* width */
   ::-webkit-scrollbar {
     width: 1.2rem;
