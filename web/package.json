@@ -3,13 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
     "axios": "^0.21.0",
     "dotenv": "^8.2.0",
     "framer": "^1.2.9",
@@ -19,6 +12,7 @@
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "react-select": "^3.1.0",
     "styled-components": "^5.2.1",
     "swr": "^0.3.8",
     "typescript": "^4.0.3",
@@ -49,9 +43,17 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
     "@types/react-dropzone": "^5.1.0",
     "@types/react-icons": "^3.0.0",
     "@types/react-router-dom": "^5.1.6",
+    "@types/react-select": "^3.0.26",
     "@types/styled-components": "^5.1.4"
   }
 }
