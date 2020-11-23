@@ -11,7 +11,7 @@ export const Container = styled.form`
   > fieldset {
     display: flex;
     gap: 1.6rem;
-  }
+  } 
 `;
 
 export const DeleteButton = styled.button`

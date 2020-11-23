@@ -24,6 +24,16 @@ interface Props {
 const ProductForm: React.FC<Props> = ({productToUpdateId}) => {
   const stringUser = localStorage.getItem('user') || '';
   const user = JSON.parse(stringUser);
+  const [formData, setFormData] = useState({
+    name: '',
+    photo: '',// File
+    description: '',
+    price: '',// number
+    category: '',// category
+    quantity: '',// number
+    sold: '',// number
+    shipping: '',// bool
+  }); 
 
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);

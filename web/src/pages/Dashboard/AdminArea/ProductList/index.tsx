@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import LoadingSpinner from '../../../../components/LoadingSpinner';
-import api from '../../../../services/api';
 import ProductForm from '../ProductForm';
 
 import {
