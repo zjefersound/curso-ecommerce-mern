@@ -33,7 +33,7 @@ const CategoryForm: React.FC<Props> = ({categoryToUpdate}) => {
   const handleSubmit = (event: FormEvent) => {
     setLoading(true);
     event.preventDefault();
-    if (categoryToUpdate) {
+    if (categoryToUpdate && categoryToUpdate?._id && categoryToUpdate?.name) {
       api.put(`/category/${categoryToUpdate._id}/${user._id}`, { name }).then(res => {
         trigger('/category');
         setName('');

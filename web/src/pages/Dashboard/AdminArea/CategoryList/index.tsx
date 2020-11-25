@@ -24,6 +24,7 @@ const CategoryList: React.FC<Props> = ({ adding }) => {
   useEffect(() => {
     setCategoryToUpdate({} as CategoryProps);
   }, [data]);
+  
   useEffect(() => {
     !adding && setCategoryToUpdate({} as CategoryProps);
   }, [adding]);

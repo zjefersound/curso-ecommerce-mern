@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import LoadingSpinner from '../../../../components/LoadingSpinner';
-import api from '../../../../services/api';
 import ProductForm from '../ProductForm';
 
-import { 
+import {
   Container,
   EditIcon
 } from './styles';
@@ -15,9 +14,9 @@ interface Props {
 
 interface ProductProps {
   _id: string;
-  name: string; 
+  name: string;
   photo: any;
-  description: string; 
+  description: string;
   price: number;
   category: CategoryProps;
   quantity: number;
@@ -42,35 +41,36 @@ const ProductList: React.FC<Props> = ({ adding }) => {
   }, [adding]);
   return (
     <>
-      <Container>
-        <li className='header'>
-          <span>Título</span>
-          <span>Descrição</span>
-          <span>Preço</span>
-          <span>Categoria</span>
-          <span>Qtd.</span>
-          <span>Vendidos</span>
-        </li>
-        {data ? (
-          data.map(p => (
-            <li key={p._id}>
-              <span>{p.name}</span>
-              <span>{p.description.substring(20, 0)+'...'}</span>
-              <span>{p.price}</span>
-              <span>{p.category.name}</span>
-              <span>{p.quantity}</span>
-              <span>{p.sold}</span>
-              
-              <button onClick={() => setProductToUpdate(p)}>
-                <EditIcon />
-              </button>
+      {(adding || productToUpdate._id)
+        ? (<ProductForm />) : (
+          <Container>
+            <li className='header'>
+              <span>Título</span>
+              <span>Descrição</span>
+              <span>Preço</span>
+              <span>Categoria</span>
+              <span>Qtd.</span>
+              <span>Vendidos</span>
             </li>
-          ))
-        ) : (
-            <LoadingSpinner />
-          )}
-      </Container>
-      {(adding || productToUpdate._id) && (<ProductForm />)}
+            {data ? (
+              data.map(p => (
+                <li key={p._id}>
+                  <span>{p.name}</span>
+                  <span>{p.description.substring(20, 0) + '...'}</span>
+                  <span>{p.price}</span>
+                  <span>{p.category ? p.category.name : 'Categoria não encontrada'}</span>
+                  <span>{p.quantity}</span>
+                  <span>{p.sold}</span>
+                  <button onClick={() => setProductToUpdate(p)}>
+                    <EditIcon />
+                  </button>
+                </li>
+              ))
+            ) : (
+                <LoadingSpinner />
+              )}
+          </Container>
+        )}
     </>
   );
 }
